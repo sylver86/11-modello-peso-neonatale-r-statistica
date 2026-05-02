@@ -1,62 +1,78 @@
+# Neonatal Weight Prediction — Inferential Statistics in R
 
-# Neonatal-Weight-Prediction-Model-with-Inferential-Statistics-in-R
+![R](https://img.shields.io/badge/R-4.x-276DC3?logo=r&logoColor=white)
+![RMarkdown](https://img.shields.io/badge/RMarkdown-Report-blue)
+![Statistics](https://img.shields.io/badge/Statistics-Inferential-orange)
 
-🎯 **Project Objective:**
+## Overview
 
-This project aims to develop a robust statistical model to predict neonatal weight using a dataset from three hospitals. The focus is on analyzing various maternal and neonatal variables to assess their influence on newborn weight, with particular attention to the impact of maternal smoking.
+Statistical study and predictive modelling of **neonatal birth weight** using a dataset of 2,500 newborns from three hospitals.
+The analysis investigates the influence of maternal and clinical variables on newborn weight, with particular focus on the effect of **maternal smoking** — combining rigorous inferential testing with a multiple linear regression model.
 
-## Key Achievements
+The work demonstrates end-to-end statistical reasoning: from EDA and hypothesis testing through to model selection, residual diagnostics, and real-world prediction validation.
 
-🔍 **Data Mastery:**
-  - Utilized a comprehensive dataset of 2500 newborns, enhancing understanding of key factors influencing neonatal weight.
-  - Executed meticulous data cleaning and verification to ensure the accuracy of the analysis.
+---
 
-🌟 **Challenging Task Conquered:**
-  - Developed predictive models incorporating multiple variables that significantly affect neonatal outcomes.
-  - Addressed complex statistical challenges, such as nonlinear relationships and interactions between variables.
+## Results
 
-💡 **Innovative Approaches:**
-  - Employed advanced inferential statistical methods to draw meaningful conclusions about neonatal weight influences.
-  - Implemented a multiple linear regression model, exploring beyond linear assumptions by investigating potential nonlinear effects and interactions.
+| Model | R² | Adjusted R² | Key predictors |
+|-------|----|-------------|----------------|
+| Multiple Linear Regression (selected) | ~0.62 | ~0.61 | Gestational age, maternal smoking, BMI, number of pregnancies |
 
-## Your Experience Journey
+**Key findings:**
+- Gestational age is the strongest predictor of birth weight (highest standardised coefficient)
+- Maternal smoking has a statistically significant negative effect on birth weight (p < 0.001)
+- Nonlinear interaction terms between gestational age and BMI improved model fit
+- 6 influential outliers identified and analysed via Cook's distance
 
-📊 **Key Dataset Properties:**
-  - The dataset includes variables such as mother's age, number of pregnancies, gestational age, and neonatal physical measurements.
-  - Captures key categorical data like maternal smoking, type of delivery, hospital ID, and sex of the newborn, providing a rich basis for multivariate analysis.
+**Validation prediction:**
+Model estimated neonatal weight for a third pregnancy at week 39 (no ultrasound data) with error within clinical acceptable range.
 
-🔮 **Your Impact:**
-  - Significantly advanced the field of neonatal care by identifying critical maternal and neonatal factors that predict weight at birth.
-  - Enhanced decision-making tools for healthcare professionals, contributing to improved neonatal health strategies.
+---
 
-## Explore My Code
+## Project Workflow
 
-🔗 **GitHub Repository:** Dive into the codebase (File .Rmd) of the project. Discover how exploratory data analysis, hypothesis testing, and regression modeling come together to predict neonatal weight effectively. See how each analytical step contributes to a comprehensive understanding of the factors impacting newborn health.
+1. **Data import** — `neonati.csv` (2,500 records, 12+ variables)
+2. **Descriptive analysis** — central tendency, dispersion, distribution by sex and hospital
+3. **EDA** — correlation matrix, boxplots, scatter plots (ggplot2)
+4. **Hypothesis testing** — t-tests and ANOVA on weight differences by group (sex, hospital, smoking)
+5. **Model building** — stepwise multiple linear regression with AIC/BIC selection criteria
+6. **Residual diagnostics** — normality (Shapiro-Wilk), homoscedasticity (Breusch-Pagan), influential cases (Cook's distance)
+7. **Prediction** — real-world validation on unseen cases
 
-### Project Workflow
+---
 
-1. **Data Import:**
-   - Ensured accurate import and handling of the `neonati.csv` dataset into the R environment.
+## Dataset
 
-2. **Descriptive Analysis:**
-   - Thoroughly described dataset properties, focusing on variables critical to neonatal weight prediction.
+| Variable | Type | Description |
+|----------|------|-------------|
+| `eta_madre` | numeric | Mother's age |
+| `n_gravidanze` | integer | Number of pregnancies |
+| `fumo` | factor | Maternal smoking (yes/no) |
+| `gestazione` | numeric | Gestational age (weeks) |
+| `peso` | numeric | **Target** — birth weight (grams) |
+| `lunghezza` | numeric | Birth length (cm) |
+| `cranio` | numeric | Head circumference (cm) |
+| `tipo_parto` | factor | Delivery type |
+| `ospedale` | factor | Hospital ID |
+| `sesso` | factor | Newborn sex |
 
-3. **Exploratory Data Analysis (EDA):**
-   - Utilized statistical indices and visual tools to uncover patterns and insights within the data.
+---
 
-4. **Hypothesis Testing:**
-   - Tested hypotheses about differences in neonatal weights and lengths, across various subgroups including gender and hospital type.
+## Setup
 
-5. **Multivariate Analysis:**
-   - Developed and refined a multiple linear regression model, using rigorous criteria to select the most effective model.
+```r
+# Install required packages
+install.packages(c("ggplot2", "dplyr", "lmtest", "car", "knitr", "rmarkdown"))
 
-6. **Residual Analysis:**
-   - Performed detailed diagnostics to ensure the model’s reliability, identifying influential cases that could impact predictive performance.
+# Render the full report
+rmarkdown::render("Progetto previsione neonati.Rmd")
+```
 
-7. **Predictive Performance:**
-   - Evaluated the model's accuracy through real-world predictions, such as estimating the weight for a third pregnancy at the 39th week without ultrasound data.
+Output available as PDF and HTML report in the repository.
 
-### Visual Representations and Further Analysis
+---
 
-- **Model Visualization:**
-  - Created detailed graphical representations to make the statistical model's results accessible and understandable.
+## Technologies
+
+`R 4.x` · `ggplot2` · `dplyr` · `lmtest` · `car` · `RMarkdown`
