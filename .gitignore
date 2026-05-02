@@ -1,0 +1,14 @@
+# R
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+.Rapp.history
+
+# knitr cache
+*_cache/
+*_files/
+
+# OS
+.DS_Store
+Thumbs.db
