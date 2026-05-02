@@ -1,114 +1,143 @@
-# NeoStat — Modello Predittivo del Peso Neonatale (Statistica Inferenziale in R)
+# 👶 NeoStat: Evidence-Based Statistical Modeling & Clinical Inferential Analysis
 
-![R](https://img.shields.io/badge/R-4.x-276DC3?logo=r&logoColor=white)
-![RMarkdown](https://img.shields.io/badge/RMarkdown-Report-blue)
-![R2](https://img.shields.io/badge/R²-~0.62-brightgreen)
-![Statistics](https://img.shields.io/badge/Statistics-Inferenziale-orange)
+<p align="center">
+  <img src="https://img.shields.io/badge/R-4.x-276DC3?logo=r&logoColor=white" alt="R" />
+  <img src="https://img.shields.io/badge/RMarkdown-Scientific--Reporting-blue" alt="RMarkdown" />
+  <img src="https://img.shields.io/badge/R²-0.62-brightgreen" alt="R2" />
+  <img src="https://img.shields.io/badge/Statistics-Inferential-orange" alt="Statistics" />
+  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License" />
+</p>
 
-## Panoramica
+**NeoStat** è un progetto di statistica inferenziale avanzata progettato per la modellazione dei fattori di rischio neonatale. Utilizzando il linguaggio **R**, il progetto implementa un'analisi end-to-end su un dataset clinico di **2.500 neonati**, applicando test d'ipotesi rigorosi e modelli di regressione lineare multipla per quantificare l'impatto di variabili fisiologiche e comportamentali (come il fumo materno) sul peso alla nascita.
 
-Studio statistico inferenziale end-to-end sul peso neonatale alla nascita su un campione di 2.500 neonati da tre ospedali. Il modello di regressione multipla raggiunge R²≈0.62 con 4 predittori chiave, confermando l'effetto statisticamente significativo del fumo materno (p<0.001). Include diagnostica completa dei residui, rilevamento outlier (Cook's distance) e validazione predittiva su casi reali.
+## 🏢 Valore Enterprise & Settori di Applicazione
 
-Metodologia statistica rigorosa applicabile in healthcare analytics, pharmaceutical research, qualsiasi contesto dove la significatività statistica e la spiegabilità del modello sono requisiti di business.
-
-## Valore Enterprise
-
-| Settore / Azienda | Rilevanza |
+| Settore / Ambito | Rilevanza & Benefici |
 |-------------------|-----------|
-| Healthcare & Pharma | Clinical analytics, modelli predittivi su dati sanitari |
-| IT Consulting (Accenture, NTT Data) | Statistica inferenziale per regulated industries |
-| Ricerca & Accademia | Metodologia statistica rigorosa: ipotesi, diagnostica |
-| Insurance | Attuariale: modellazione di fattori di rischio |
-
-## Risultati del Modello
-
-| Modello | R² | Adj. R² | Predittori chiave |
-|---------|-----|---------|------------------|
-| **Regressione Lineare Multipla (selezionato)** | **~0.62** | **~0.61** | gestazione, fumo materno, BMI, n° gravidanze |
-
-**Findings principali:**
-- L'età gestazionale è il predittore più forte (coefficiente standardizzato più alto)
-- Il fumo materno ha effetto negativo statisticamente significativo (p<0.001)
-- Termini di interazione non-lineari tra età gestazionale e BMI migliorano il fit
-- 6 outlier influenti identificati e analizzati via Cook's distance
-
-## Workflow Completo
-
-| Fase | Metodo | Strumento R |
-|------|--------|-------------|
-| EDA | Correlazioni, boxplot, scatter | ggplot2, dplyr |
-| Test ipotesi | t-test, ANOVA per gruppo (sesso, ospedale, fumo) | stats |
-| Selezione modello | Stepwise AIC/BIC | MASS |
-| Diagnostica residui | Shapiro-Wilk, Breusch-Pagan | lmtest, car |
-| Outlier | Cook's distance, leverage plot | car |
-| Predizione | Validazione su casi reali (settimana 39) | stats |
-
-## Dataset
-
-| Variabile | Tipo | Descrizione |
-|-----------|------|-------------|
-| `gestazione` | numeric | Età gestazionale (settimane) |
-| `peso` | numeric | **Target** — peso alla nascita (grammi) |
-| `fumo` | factor | Fumo materno (sì/no) |
-| `bmi_madre` | numeric | BMI materno |
-| `n_gravidanze` | integer | Numero di gravidanze |
-| `sesso` | factor | Sesso del neonato |
-| `ospedale` | factor | Ospedale di provenienza |
-
-## Setup
-
-```r
-install.packages(c("ggplot2", "dplyr", "lmtest", "car", "knitr", "rmarkdown"))
-rmarkdown::render("Progetto previsione neonati.Rmd")
-```
-
-## Stack Tecnologico
-
-`R 4.x` · `ggplot2` · `dplyr` · `lmtest` · `car` · `RMarkdown`
+| **Public Health & Pediatrics** | Identificazione dei driver critici per la salute neonatale, supportando campagne di prevenzione basate sull'evidenza statistica. |
+| **Pharmaceutical & Clinical Research** | Analisi rigorosa dei dati di studio, validazione delle ipotesi e reporting scientifico conforme agli standard di pubblicazione. |
+| **Health Insurance** | Modellazione attuariale del rischio basata su variabili cliniche per la previsione dei costi sanitari pediatrici. |
+| **Governmental Agencies (PA)** | Supporto al Data-Driven Policy Making per il miglioramento dei servizi di ostetricia e ginecologia territoriali. |
 
 ---
 
+## 🎯 Executive Summary & Valore di Business
+NeoStat risolve la sfida della comprensione dei nessi causali in ambito clinico, andando oltre la semplice correlazione per fornire stime precise e statisticamente significative.
+
+### 🏛️ 1. Rigore Metodologico e Test d'Ipotesi
+* **Analisi Multivariata:** Il modello non si limita a osservare singole variabili, ma gestisce la multicollinearità tra età gestazionale, BMI materno, parità e abitudini comportamentali, isolando l'effetto netto di ogni predittore.
+* **Significatività Statistica:** Conferma dell'impatto negativo del fumo materno con un **p-value < 0.001**, fornendo una prova statistica inoppugnabile per il supporto alle decisioni cliniche.
+
+### ⚙️ 2. Diagnostica del Modello e Robustezza
+* **Analisi dei Residui:** Verifica sistematica delle assunzioni di linearità, omoschedasticità (test di Breusch-Pagan) e normalità (test di Shapiro-Wilk) per garantire la validità delle inferenze.
+* **Cook’s Distance & Outlier Detection:** Identificazione di osservazioni influenti e outlier che potrebbero distorcere le stime, garantendo la robustezza del modello finale (**R² ≈ 0.62**).
+
+### 🛡️ 3. Reporting Scientifico (RMarkdown)
+* **Riproducibilità:** L'intero studio è documentato in RMarkdown, permettendo la generazione automatica di report tecnici completi di grafici, tabelle e analisi testuali, assicurando la trasparenza e la riproducibilità totale dei risultati.
+
 ---
 
-# NeoStat — Neonatal Weight Prediction (Inferential Statistics in R) 🇬🇧
+## 🏗️ Architettura del Workflow Statistico
 
-![R](https://img.shields.io/badge/R-4.x-276DC3?logo=r&logoColor=white)
-![R2](https://img.shields.io/badge/R²-~0.62-brightgreen)
+```mermaid
+graph TD
+    subgraph "Data Preparation"
+        RAW[("🩺 Clinical Dataset<br/>(2,500 Observations)")]
+        CLEAN["🧹 Data Cleaning<br/>(Dplyr / Tidyr)"]
+    end
 
-## Overview
+    subgraph "Inferential Phase"
+        HYP["🧪 Hypothesis Testing<br/>(T-test / ANOVA)"]
+        COR["📊 Correlation Analysis"]
+    end
 
-End-to-end inferential statistical study on birth weight across 2,500 newborns from three hospitals. Multiple linear regression achieves R²≈0.62 with 4 key predictors, confirming a statistically significant negative effect of maternal smoking (p<0.001). Includes full residual diagnostics, outlier detection (Cook's distance), and predictive validation on real cases.
+    subgraph "Modeling (R stats)"
+        REG["📈 Multiple Linear Regression"]
+        STEP["🪄 Stepwise AIC Selection<br/>(Feature Refinement)"]
+    end
 
-## Model Results
+    subgraph "Diagnostics & Validation"
+        RES["📉 Residual Analysis<br/>(Shapiro / BP Test)"]
+        COOK["📍 Outlier Detection<br/>(Cook's Distance)"]
+    end
 
-| Model | R² | Adj. R² | Key predictors |
-|-------|----|---------|----------------|
-| **Multiple Linear Regression** | **~0.62** | **~0.61** | gestational age, maternal smoking, BMI, pregnancies |
+    subgraph "Reporting"
+        RM["📄 RMarkdown Report<br/>(PDF / HTML)"]
+    end
 
-**Key findings:**
-- Gestational age is the strongest predictor (highest standardised coefficient)
-- Maternal smoking has a statistically significant negative effect (p<0.001)
-- Non-linear interaction terms between gestational age and BMI improved model fit
-- 6 influential outliers identified and analysed via Cook's distance
+    RAW --> CLEAN --> HYP --> COR
+    COR --> REG --> STEP
+    STEP --> RES --> COOK
+    COOK --> RM
 
-## Workflow
+    style RAW fill:#339af0,color:#fff
+    style HYP fill:#be4bdb,color:#fff
+    style REG fill:#ffd700,color:#333
+    style RM fill:#2ecc71,color:#fff
+```
 
-| Phase | Method | R Tool |
-|-------|--------|--------|
-| EDA | Correlations, boxplots, scatter | ggplot2, dplyr |
-| Hypothesis testing | t-test, ANOVA by group (sex, hospital, smoking) | stats |
-| Model selection | Stepwise AIC/BIC | MASS |
-| Residual diagnostics | Shapiro-Wilk, Breusch-Pagan | lmtest, car |
-| Outlier detection | Cook's distance, leverage plots | car |
-| Prediction | Validation on real cases (week 39) | stats |
+## 🛠️ Stack Tecnologico
 
-## Setup
+| Layer | Tecnologia | Ruolo |
+|:------|:-----------|:-----|
+| 📈 **Language** | R 4.x | Statistical Computing |
+| 📊 **Visualization** | ggplot2 | Advanced Scientific Plotting |
+| 🧹 **Data Manipulation** | dplyr / tidyr | Tidyverse Data Cleaning |
+| 🧪 **Statistical Tests** | stats / lmtest / car | Inferential Testing & Diagnostics |
+| 📝 **Reporting** | RMarkdown / Knitr | Reproducible Research Reporting |
+
+## 🚀 Setup
 
 ```r
+# Installazione pacchetti necessari
 install.packages(c("ggplot2", "dplyr", "lmtest", "car", "knitr", "rmarkdown"))
+
+# Rendering del report scientifico
 rmarkdown::render("Progetto previsione neonati.Rmd")
 ```
 
-## Technologies
+<br><br>
+
+*Progettato e sviluppato da Eugenio Pasqua.*
+
+---
+
+# 🇬🇧 ENGLISH VERSION
+
+# 👶 NeoStat: Evidence-Based Statistical Modeling & Clinical Inferential Analysis
+
+<p align="center">
+  <img src="https://img.shields.io/badge/R-4.x-276DC3?logo=r&logoColor=white" alt="R" />
+  <img src="https://img.shields.io/badge/RMarkdown-Scientific--Reporting-blue" alt="RMarkdown" />
+  <img src="https://img.shields.io/badge/R²-0.62-brightgreen" alt="R2" />
+</p>
+
+**NeoStat** is an advanced inferential statistics project designed for modeling neonatal risk factors. Using the **R** language, the project implements an end-to-end analysis on a clinical dataset of **2,500 newborns**, applying rigorous hypothesis testing and multiple linear regression models to quantify the impact of physiological and behavioral variables (such as maternal smoking) on birth weight.
+
+## 🏢 Enterprise Value & Application Sectors
+
+| Sector / Domain | Relevance & Benefits |
+|-------------------|-----------|
+| **Public Health** | Identifying critical drivers for neonatal health, supporting evidence-based prevention campaigns. |
+| **Clinical Research** | Rigorous study data analysis, hypothesis validation, and publication-standard scientific reporting. |
+| **Insurance** | Actuarial risk modeling based on clinical variables for pediatric healthcare cost forecasting. |
+
+---
+
+## 🏗️ Statistical Workflow Architecture
+
+```mermaid
+graph TD
+    RAW[("🩺 Clinical Data")] --> EDA["📊 EDA & Hypothesis Testing"]
+    EDA --> REG["📈 Multiple Regression<br/>(AIC Selection)"]
+    REG --> DIAG["📉 Model Diagnostics<br/>(Resid. & Outliers)"]
+    DIAG --> RM["📄 Scientific Report<br/>(RMarkdown)"]
+```
+
+## 🧰 Technology Stack
 
 `R 4.x` · `ggplot2` · `dplyr` · `lmtest` · `car` · `RMarkdown`
+
+<br><br>
+
+*Designed and developed by Eugenio Pasqua.*
